@@ -1,0 +1,26 @@
+services:
+  mysql:
+    container_name: mysql-chudopark
+    build:
+      context: ./MySQL
+      dockerfile: Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: databasemysql
+    ports:
+      - "3306:3306"
+    # pid: host  # Uncomment this line if you want to use the host's PID namespace
+
+  django:
+    container_name: django-chudopark
+    build: ./chudopark
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./chudopark:/usr/src/app/
+    ports:
+      - 8054:8000
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+
+

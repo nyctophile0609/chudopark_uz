@@ -1,0 +1,7 @@
+chudopark/api/migrations/__pycache__/
+chudopark/api/__pycache__/
+chudopark/chudopark/__pycache__/
+chudopark/images/product/
+chudopark/images/psubsets/
+*.sqlite3
+*.pyc
