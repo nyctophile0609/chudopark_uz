@@ -148,3 +148,20 @@ class DiscountModelViewSet(ModelViewSet):
         else:
             permission_classes = [permissions.AllowAny]
         return [permission() for permission in permission_classes]
+
+
+class GalleryModelViewSet(viewsets.ModelViewSet):
+    queryset = GalleryModel.objects.all()
+    serializer_class = GalleryModelSerializer
+    authentication_classes = [
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication,
+    ]
+    def get_permissions(self):
+        if self.action == "update":
+            permission_classes = [permissions.IsAuthenticated,]
+        elif self.action == "create" or self.action == "destroy":
+            permission_classes = [permissions.IsAuthenticated,IsLowRank]
+        else:
+            permission_classes = [permissions.AllowAny]
+        return [permission() for permission in permission_classes]

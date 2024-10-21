@@ -28,6 +28,7 @@ router.register(r'products', ProductModelViewSet, basename='products')
 router.register(r'product-subsets', ProductSubsetModelViewSet, basename='product-sets')
 router.register(r'applications', ApplicationModelViewSet, basename='applications')
 router.register(r'discounts', DiscountModelViewSet, basename='discounts')
+router.register(r'gallery', GalleryModelViewSet,basename="gallery")
 
 # URL patterns
 urlpatterns = [

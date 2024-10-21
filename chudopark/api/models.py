@@ -98,3 +98,24 @@ class DiscountModel(models.Model):
     end_date=models.DateTimeField()
     created_date=models.DateTimeField(auto_now_add=True)
 
+class GalleryModel(models.Model):
+    image=models.ImageField()
+    description=models.CharField(max_length=250,null=True)
+    created_date=models.DateTimeField(auto_now_add=True)
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        image_instance = self.image
+        new_directory_path = os.path.join(MEDIA_ROOT, f"gallery/gallery_{self.id}")
+        if not os.path.exists(new_directory_path):
+            os.makedirs(new_directory_path)
+        source_image_path = image_instance.path
+        _, file_name = os.path.split(source_image_path)
+        new_image_path = os.path.join(new_directory_path, file_name)
+        try:
+            shutil.move(source_image_path, new_image_path)
+        except Exception as e:
+             return False
+        if self.image!=f"gallery/gallery_{self.id}/{file_name}":
+            self.image = f"gallery/gallery_{self.id}/{file_name}"
+            self.save()    
+

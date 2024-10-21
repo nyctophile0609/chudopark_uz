@@ -50,3 +50,7 @@ class DiscountModelSerializer(ModelSerializer):
         model=DiscountModel
         fields="__all__"
     
+class GalleryModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GalleryModel
+        fields = '__all__'

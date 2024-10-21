@@ -3,5 +3,6 @@ chudopark/api/__pycache__/
 chudopark/chudopark/__pycache__/
 chudopark/images/product/
 chudopark/images/psubsets/
+chudopark/images/gallery/
 *.sqlite3
 *.pyc
